@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.1" class="java.beans.XMLDecoder">
+ <object class="settings">
+  <void property="capturePath">
+   <string>classes/captured.png</string>
+  </void>
+  <void property="mangaOCRPath">
+   <string>classes/manga-ocr/mangaOCR2.py</string>
+  </void>
+  <void property="modelPath">
+   <string>classes/model/manga-ocr-base</string>
+  </void>
+  <void property="settingsPath">
+   <string>classes/settings/settings.xml</string>
+  </void>
+  <void property="translatorDataPath">
+   <string>classes/deepl/translation_data.json</string>
+  </void>
+  <void property="translatorPath">
+   <string>classes/deepl/deepl.py</string>
+  </void>
+ </object>
+</java>

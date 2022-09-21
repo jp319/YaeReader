@@ -1,16 +1,13 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 
 public class YaeReader extends JFrame{
@@ -23,7 +20,7 @@ public class YaeReader extends JFrame{
     //Paths
     private String modelPath;
     private String capturePath;
-    public static String settingsPath;
+    public static String settingsPath = "classes/settings/settings.xml";
     private String mangaOCR_PAth;
     //private final String mangaOCR_PAth = "D:\\Hacks\\scanlation\\mangaOCR\\classes\\manga-ocr\\mangaOCR2.py";
     private String translatorPath;
@@ -107,7 +104,11 @@ public class YaeReader extends JFrame{
                 //TODO Use save Function
                 saveSettings(
                         modelPath.replace("\\","/"),
-                        capturePath.replace("\\","/")
+                        capturePath.replace("\\","/"),
+                        settingsPath.replace("\\","/"),
+                        mangaOCR_PAth.replace("\\","/"),
+                        translatorPath.replace("\\","/"),
+                        translatorDataPath.replace("\\","/")
                 );
             }
         });
@@ -164,14 +165,17 @@ public class YaeReader extends JFrame{
                 String cleanCapturePath = tfCapturePath.getText().replace("\\","/");
                 String cleanModelPath = tfModelPath.getText().replace("\\","/");
                 String cleanOCRPath = mangaOCR_PAth.replace("\\","/");
+                String cleanTranslatorPath = translatorPath.replace("\\", "/");
+                String cleanTranslatorDataPath = translatorDataPath.replace("\\", "/");
                 //Get Extracted Text
-                Capture capt = new Capture(cleanCapturePath,cleanModelPath,cleanOCRPath);
+                Capture capt = new Capture(cleanCapturePath,cleanModelPath,cleanOCRPath,
+                                            cleanTranslatorPath,cleanTranslatorDataPath);
                 //Translate
 //                Translator translate = new Translator();
 //                translate.translateText(capt.getExtractedText());
                 //Translate Python Method
+                //Show translated window
                 //Code here
-
                 //TODO Show Tray Icon Message Extracting Text
                 trayIcon.displayMessage("Translated","Extracted Text Translated", TrayIcon.MessageType.INFO);
             }
@@ -205,7 +209,8 @@ public class YaeReader extends JFrame{
             ex.printStackTrace();
         }
     }
-    public void saveSettings(String modelPath, String capturePath) {
+    public void saveSettings(String modelPath, String capturePath, String settingsPath,
+                             String mangaOCR_PAth, String translatorPath, String translatorDataPath) {
         settings saveSettings = new settings(modelPath, capturePath,
                 settingsPath,mangaOCR_PAth,translatorPath,translatorDataPath);
         doSave(saveSettings);
@@ -223,14 +228,14 @@ public class YaeReader extends JFrame{
         }
     }
     public void createIfNoExistSettings() {
-
+        //Old condition
         File settingsFile = new File(settingsPath);
+//        if (settingsFile.exists())
         //Check settings if exist
-        if (settingsFile.exists()) {
+        if (settingsFile.isFile()) {
             System.out.println("File already exist");
             loadSettings();
         } else {
-            System.out.println("Created new file");
 //            String modPath = "D:/Hacks/scanlation/mangaOCR/classes/model/manga-ocr-base";
 //            String capPath = "D:/Hacks/scanlation/mangaOCR/classes/captured.png";
             String modPath = "classes/model/manga-ocr-base";
@@ -241,7 +246,8 @@ public class YaeReader extends JFrame{
             String ocrPath = "classes/manga-ocr/mangaOCR2.py";
             settings settings = new settings(modPath, capPath, setPath, ocrPath, transPath, transDataPath);
             doSave(settings);
-            saveSettings(modPath,capPath);
+            saveSettings(modPath,capPath, setPath,ocrPath,transPath,transDataPath);
+            System.out.println("Created new file");
         }
     }
     //Run

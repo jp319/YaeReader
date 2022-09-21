@@ -2,13 +2,10 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 public class Translator {
-
     final String baseUrl = "https://www.deepl.com/";
     static String sourceLanguage = "translator#ja/";
     static String translationLanguage = "en/";
-
     public void translateText(String text) {
         try {
             textLinkCompatible(text);
@@ -19,7 +16,6 @@ public class Translator {
             e.printStackTrace();
         }
     }
-
     public String textLinkCompatible(String text) {
         text = text.replace(" ","%20");
         return text;

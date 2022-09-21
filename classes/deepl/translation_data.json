@@ -1,0 +1,54 @@
+{
+    "jsonrpc": "2.0",
+    "id": 40890008,
+    "result": {
+        "translations": [
+            {
+                "beams": [
+                    {
+                        "postprocessed_sentence": "Harbour Ward (e.g. in Tokyo)",
+                        "num_symbols": 13
+                    },
+                    {
+                        "postprocessed_sentence": "Harbor Ward (e.g. in Tokyo)",
+                        "num_symbols": 13
+                    }
+                ],
+                "quality": "normal"
+            }
+        ],
+        "target_lang": "EN",
+        "source_lang": "JA",
+        "source_lang_is_confident": false,
+        "detectedLanguages": {
+            "EN": 0.014631,
+            "DE": 0.011996,
+            "FR": 0.011493,
+            "ES": 0.011366999999999999,
+            "PT": 0.010648,
+            "IT": 0.010964,
+            "NL": 0.011203,
+            "PL": 0.011212,
+            "RU": 0.012005,
+            "ZH": 0.154056,
+            "JA": 0.124927,
+            "BG": 0.008974,
+            "CS": 0.009252999999999999,
+            "DA": 0.008794999999999999,
+            "EL": 0.008492,
+            "ET": 0.007818,
+            "FI": 0.009668,
+            "HU": 0.008693,
+            "LT": 0.00802,
+            "LV": 0.006866,
+            "RO": 0.008475,
+            "SK": 0.008423,
+            "SL": 0.008213,
+            "SV": 0.010217,
+            "TR": 0.00879,
+            "ID": 0.008553,
+            "UK": 0.010296999999999999,
+            "unsupported": 0.475952
+        }
+    }
+}

@@ -2,16 +2,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class TranslatorPythonTest {
-    public static void main(String[] args) throws IOException {
-        String rawText = "愛されたいと思っています。";
-        String transPath = "D:/Hacks/scanlation/mangaOCR/classes/deepl/deepl.py";
-        String transDataPath = "D:/Hacks/scanlation/mangaOCR/classes/deepl/translation_data.json";
-
-        String transText = runTanslator(rawText,transPath,transDataPath);
-        System.out.println("Translated Text : " + transText);
-    }
+//    public static void main(String[] args) throws IOException {
+//        String rawText = "ポイ捨て禁止！";
+//        String transPath = "D:/Hacks/scanlation/mangaOCR/classes/deepl/deepl.py";
+//        String transDataPath = "D:/Hacks/scanlation/mangaOCR/classes/deepl/translation_data.json";
+//
+//        String transText = runTanslator(rawText,transPath,transDataPath);
+//        System.out.println("Translated Text : " + transText);
+//    }
     public static String runTanslator(String textToBeTranslated, String translatorPath, String translatedDataPath) throws IOException {
         String translatedText;
 
