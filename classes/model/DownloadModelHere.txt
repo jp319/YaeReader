@@ -1,0 +1,3 @@
+To get manga-ocr model open a Terminal or CMD in this folder's Directory and run this two lines:
+git lfs install
+git clone https://huggingface.co/kha-white/manga-ocr-base
