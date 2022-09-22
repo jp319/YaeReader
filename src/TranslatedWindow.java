@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.Objects;
 public class TranslatedWindow extends JFrame{
     private JPanel translatedPanel;
-    private JTextField tfOrigText;
-    private JTextField tfTransText;
+    public JTextField tfOrigText;
+    public JTextField tfTransText;
     private JLabel lbClose;
     int pX, pY;
-    TranslatedWindow(String origText, String transText) throws IOException, FontFormatException {
+    TranslatedWindow() throws IOException, FontFormatException {
         //Font Settings
         Font font = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("NotoSans-Regular.ttf")));
         GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -25,15 +25,13 @@ public class TranslatedWindow extends JFrame{
         setSize(460, 235);
         setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/yae_128px.png")));
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
         //Text
         tfOrigText.setFont(font);
         tfTransText.setFont(font);
 //        tfOrigText.setText("愛されたいと思っています。");
 //        tfTransText.setText("I want to be loved.");
-        tfOrigText.setText(origText);
-        tfTransText.setText(transText);
+//        tfOrigText.setText(origText);
+//        tfTransText.setText(transText);
         tfOrigText.setEditable(false);
         tfTransText.setEditable(false);
         //lbClose to Close with change icon
@@ -81,13 +79,15 @@ public class TranslatedWindow extends JFrame{
                         getLocation().y + me.getY() - pY);
             }
         });
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
-
-    //Testing purposes
+}
+//Testing purposes
 //    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, FontFormatException {
 //        String className = getLookAndFeelClassName("Windows");
 //        UIManager.setLookAndFeel(className);
-//        new TranslatedWindow();
+//        TranslatedWindow.loading();
 //    }
 //    //Set Look and Feel
 //    public static String getLookAndFeelClassName(String nameSnippet) {
@@ -99,4 +99,3 @@ public class TranslatedWindow extends JFrame{
 //        }
 //        return null;
 //    }
-}

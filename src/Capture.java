@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Capture {
+public final class Capture {
 
     private static String capturedImage;
     private static BufferedImage croppedImage;
@@ -86,24 +86,33 @@ public class Capture {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                setExtractedText(ExtractingText(modPath,capturedImage,OCRPath));
 //                Translator translate = new Translator();
 //                translate.translateText(extractedText);
                 try {
+                    TranslatedWindow translatedWindow = new TranslatedWindow();
+                    translatedWindow.setVisible(true);
+                    //10% Image Captured
+                    //20% Extracting Text
+                    //50% Text Extracted
+                    //80% Translating Text
+                    //100% Text Translated
+                    setExtractedText(ExtractingText(modPath, capturedImage, OCRPath));
                     setTranslatedText(TranslatorPythonTest.runTanslator(extractedText, translatorPath, translatedDataPath));
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                try {
-                    new TranslatedWindow(getExtractedText(),getTranslatedText());
+                    translatedWindow.tfOrigText.setText(getExtractedText());
+                    translatedWindow.tfTransText.setText(getTranslatedText());
                 } catch (IOException | FontFormatException ex) {
                     throw new RuntimeException(ex);
                 }
+                //Old Display
+//                try {
+//                    new TranslatedWindow(getExtractedText(),getTranslatedText());
+//                } catch (IOException | FontFormatException ex) {
+//                    throw new RuntimeException(ex);
+//                }
                 System.out.println("Raw Text : " + getExtractedText());
                 System.out.println("Translate: " + getTranslatedText());
             }
         });
-
         frame.pack();
         frame.setVisible(true);
     }
@@ -129,7 +138,6 @@ public class Capture {
     public void setTranslatedText(String translatedText) {
         this.translatedText = translatedText;
     }
-
     private void repaint(BufferedImage	original, BufferedImage copy) {
         Graphics2D(original, copy, cropSelection);
     }
